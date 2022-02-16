@@ -10,8 +10,6 @@ created: 2022-02-14
 requires: N/A
 ---
 
-
-
 ## Simple Summary
 
 A translation of an HTTP-style Web3 URL to an EVM call message
