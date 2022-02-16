@@ -2,7 +2,7 @@
 w3ip: 1
 title: Web3 URL to EVM Call Message Translation
 author: Qi Zhou (@qizhou)
-discussions-to: N/A
+discussions-to: https://ethereum-magicians.org/t/eip-4804-web3-url-to-evm-call-message-translation/8300
 type: Standards Track
 category: W3IP
 status: Draft
