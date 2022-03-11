@@ -34,7 +34,7 @@ EVMMessage {
 
 ## Motivation
 
-Currently, reading data from Web3 generally relies on a translation done by a Web2 proxy to Web3 blockchain. The translation is mostly done by the proxies such as dApp webistes/node service provider/etherscan, which are out of the control of users. The standard here aims to provide a simple way for Web2 users to directly access the content of Web3.
+Currently, reading data from Web3 generally relies on a translation done by a Web2 proxy to Web3 blockchain. The translation is mostly done by the proxies such as dApp websites/node service provider/etherscan, which are out of the control of users. The standard here aims to provide a simple way for Web2 users to directly access the content of Web3.
 
 ## Specification
 
@@ -70,7 +70,7 @@ The manual mode will not do any interpretation of **path**, and put **path** as 
 The auto mode is the default mode of resolver (also applies when the "resolverMode" method is unavailable in the target contract). In the auto mode, if **path** is empty, then the protocol will call the target contract with empty calldata. Otherwise, the calldata of the EVM message will use standard Eterheum contract ABI [Contract ABI Specification — Solidity 0.8.3 documentation](https://docs.soliditylang.org/en/v0.8.3/abi-spec.html), where
 
 - **method** is a string of function method be called
-- **argument_i** is the ith argument of the method. If **type** is specified, the value will be translated to the corresponding type. The protocol currently supports the basic types such as uint256, bytes32, address, and bytes. If **type** is not specific, then the type will be automatically detected using the following rule
+- **argument_i** is the ith argument of the method. If **type** is specified, the value will be translated to the corresponding type. The protocol currently supports the basic types such as uint256, bytes32, address, and bytes. If **type** is not specified, then the type will be automatically detected using the following rule
 
 1. **type** = "uint256", if **value** is numeric
 2. **type**="bytes32", if **value** is in the form of 0x+32-byte-data hex
