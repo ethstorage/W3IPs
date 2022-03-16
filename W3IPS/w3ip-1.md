@@ -77,6 +77,8 @@ The auto mode is the default mode of resolver (also applies when the "resolverMo
 3. **type**="address", if **value** is in the form of 0x+20-byte-data hex
 4. else **type**="bytes"
 
+Note that if **method** does not exist, i.e., **path** is empty or "/", then the contract will be called with empty calldata.
+
 ## Examples
 
 #### Example 1
