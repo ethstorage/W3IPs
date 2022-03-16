@@ -59,7 +59,7 @@ where
 
 ### Resolver Mode
 
-Once the "To" address and chainid are determined, the protocol will check the resolver mode of contract by calling "resolverMode" method. The protocol currently supports two resolver modes:
+Once the "To" address and chainid are determined, the protocol will check the resolver mode of contract by calling "resolveMode" method. The protocol currently supports two resolver modes:
 
 #### Manual Mode
 
