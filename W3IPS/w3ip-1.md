@@ -43,7 +43,7 @@ The specification here only specifies for the read EVM message. Write message wi
 A Web3 URL is in the following form
 
 ```
-Web3URL = "web3://" [userinfo "@"] contractName [":" chainid] ["->(" returnTypes ")"] path [? query]
+Web3URL = "web3://" [userinfo "@"] contractName [":" chainid] ["-" [">"] "(" returnTypes ")"] path [? query]
 contractName = address | name "." nsProvider
 path = ["/" method ["/" argument_0 ["/" argument_1 ... ]]]
 argument = [type "!"] value
