@@ -1,14 +1,15 @@
 ---
 w3ip: 2
 title: Increase contract code size limit to 512K
-author: Qi Zhou ([@qizhou](https://github.com/qizhou))
-discussions-to: [#3](https://github.com/web3q/W3IPs/pull/3)
+author: Qi Zhou https://github.com/qizhou
+discussions-to: https://github.com/web3q/W3IPs/pull/3
 status: Draft
 type: Standards
 Track category: Core
 created: 2022-02-17
 requires: EIP-170
 ---
+
 
 ## Simple Summary
 
