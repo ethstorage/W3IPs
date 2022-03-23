@@ -76,7 +76,8 @@ The auto mode is the default mode of resolver (also applies when the "resolveMod
 2. **type**="bytes32", if **value** is in the form of 0x+32-byte-data hex; or
 3. **type**="address", if **value** is in the form of 0x+20-byte-data hex; or
 4. **type**="name", if **value** is in the form of **name**.**nsProvider**. In this case, the actual value of the argument will be **address**, which is obtained from **nsProvider**, e.g., eth, w3q, etc.
-5. else **type**="bytes"
+5. else **type**="bytes", if **value** is in the form of 0x+variable-byte-data hex; or
+6. else **type**="string".
 
 Note that if **method** does not exist, i.e., **path** is empty or "/", then the contract will be called with empty calldata.
 
