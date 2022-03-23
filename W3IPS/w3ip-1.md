@@ -67,15 +67,16 @@ The manual mode will not do any interpretation of **path**, and put **path** as 
 
 #### Auto Mode
 
-The auto mode is the default mode of resolver (also applies when the "resolverMode" method is unavailable in the target contract). In the auto mode, if **path** is empty, then the protocol will call the target contract with empty calldata. Otherwise, the calldata of the EVM message will use standard Eterheum contract ABI [Contract ABI Specification — Solidity 0.8.3 documentation](https://docs.soliditylang.org/en/v0.8.3/abi-spec.html), where
+The auto mode is the default mode of resolver (also applies when the "resolveMode" method is unavailable in the target contract). In the auto mode, if **path** is empty, then the protocol will call the target contract with empty calldata. Otherwise, the calldata of the EVM message will use standard Ethereum contract ABI [Contract ABI Specification — Solidity 0.8.3 documentation](https://docs.soliditylang.org/en/v0.8.3/abi-spec.html), where
 
 - **method** is a string of function method be called
-- **argument_i** is the ith argument of the method. If **type** is specified, the value will be translated to the corresponding type. The protocol currently supports the basic types such as uint256, bytes32, address, and bytes. If **type** is not specified, then the type will be automatically detected using the following rule
+- **argument_i** is the ith argument of the method. If **type** is specified, the value will be translated to the corresponding type. The protocol currently supports the basic types such as uint256, bytes32, address, and bytes. If **type** is not specified, then the type will be automatically detected using the following rule in a sequential way:
 
-1. **type** = "uint256", if **value** is numeric
-2. **type**="bytes32", if **value** is in the form of 0x+32-byte-data hex
-3. **type**="address", if **value** is in the form of 0x+20-byte-data hex
-4. else **type**="bytes"
+1. **type** = "uint256", if **value** is numeric; or
+2. **type**="bytes32", if **value** is in the form of 0x+32-byte-data hex; or
+3. **type**="address", if **value** is in the form of 0x+20-byte-data hex; or
+4. **type**="name", if **value** is in the form of **name**.**nsProvider**. In this case, the actual value of the argument will be **address**, which is obtained from **nsProvider**, e.g., eth, w3q, etc.
+5. else **type**="bytes"
 
 Note that if **method** does not exist, i.e., **path** is empty or "/", then the contract will be called with empty calldata.
 
