@@ -7,12 +7,12 @@ status: Draft
 type: Standards Track
 category: ERC
 created: 2022-04-04
-requires: 721
+requires: 721, 1155
 ---
 
 interface
 ```
-interface ERC721OnChainMetadata {
+interface NFTOnChainMetadata {
     // @notice Read the metatdata using _tokenId.
     // @dev Throws if `_tokenId` is not a valid NFT.
     function readMetadata(uint256 _tokenId) external view returns (bytes memory);
@@ -24,3 +24,5 @@ interface ERC721OnChainMetadata {
     function getMetadata(bytes memory _tokenInfo) external view returns (bytes memory);
 }
 ```
+
+The interface can be used by NFT721 and NFT1155 directly.
