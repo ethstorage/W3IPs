@@ -25,4 +25,12 @@ interface NFTOnChainMetadata {
 }
 ```
 
-The interface can be used by NFT721 and NFT1155 directly.
+```
+interface ERC721OnChainMetaData is NFTOnChainMetadata {
+     // @notice Destruct the NFT token with its Metadata.  Refund the locked token if the Metadata has.
+     // @dev Throws unless `msg.sender` is the current owner, an authorized
+     //  operator, or the approved address for this NFT.
+     //  Throws if `_tokenId` is not a valid NFT.
+     function destructFrom(address _from, uint256 _tokenId) external;
+}
+```
