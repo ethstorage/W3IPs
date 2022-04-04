@@ -55,7 +55,7 @@ where
 - **userinfo** indicates which user is calling the EVM, i.e., "From" field in EVM call message. If not specified, the protocol will use 0x0 as the sender address.
 - **contractName** indicates the contract to be called, i.e., "To" field in the EVM call message. If the **contractName** is an **address**, i.e., 0x + 20-byte-data hex, then "To" will be the address. Otherwise, the name is from a name service. In the second case, **nsProvider** will be the short name of name service providers such as "ens", "w3q", etc. The way to translate the name from a name service to an address will be defined in future proposals.
 - **chainid** indicates which chain to call the message. If not specified, the protocol will use the same chain as the name service provider, e.g., 1 for eth, and 333 for w3q. If no name service provider is available, the default chainid is 1.
-- **returnTypes** tells the format of the returned data. If not specified, the returned message data will be parsed in "(bytes32)" and MIME will be set based on the suffix of the last argument. Otherwise, the returned message will be parsed in the specified ""returnTypes" in JSON.
+- **returnTypes** tells the format of the returned data. If not specified, the returned message data will be parsed in "(bytes32)" and MIME will be set based on the suffix of the last argument. If **returnTypes** is "()", the returned data will be parsed in raw bytes in JSON.  Otherwise, the returned message will be parsed in the specified "returnTypes" in JSON.  
 
 ### Resolver Mode
 
@@ -120,7 +120,14 @@ The protocol will find the address of **qizhou.w3q** from W3NS, and then call th
 web3://usdc.eth->(uint256)/balanceOf/0x1122...ff
 ```
 
-The protocol will find the address of **usdc.eth** and then call the method "balanceOf(address)" of the address. The returned data will be parsed as uint256 as `[ "0x1f3523a1" ]`.
+The protocol will find the address of **usdc.eth** and then call the method "balanceOf(address)" of the address. The returned data will be parsed as uint256 as `[ "523576225" ]`.
+
+#### Example 6
+```
+web3://usdc.eth->()/balanceOf/0x1122...ff
+```
+
+The protocol will find the address of **usdc.eth** and then call the method "balanceOf(address)" of the address. The returned data will be parsed as raw bytes as `[ "0x000000000000000000000000000000000000000000000000000000001f3523a1" ]`.
 
 ## Copyright
 
