@@ -14,11 +14,12 @@ interface
 ```
 interface NFTOnChainMetadata {
     // @notice Get the metatdata using _tokenId.
-    // @dev Throws if `_tokenId` is not a valid NFT.
-    function getMetadata(uint256 _tokenId) external view returns (bytes memory);
+    // @dev The tokenInfo should be in the format of "tokenId.json".  This will help the Web3 URL to identify MIME type of the metadata according W3IP-1.
+    // Throws if `tokenId` is not a valid NFT.
+    function getMetadata(bytes memory _tokenInfo) external view returns (bytes memory);
     
     // @notice Get the metatdata using _tokenInfo.  
-    // @dev The tokenInfo should be in the format of "tokenId.type".  For example, when the metadata is an JPEG file, then
+    // @dev The tokenInfo should be in the format of "tokenId.imagetype".  For example, when the metadata is an JPEG file, then
     // the type should be "jpg". This will help the Web3 URL to identify MIME type of the metadata according W3IP-1.
     // Throws if `tokenId` is not a valid NFT.
     function getImage(bytes memory _tokenInfo) external view returns (bytes memory);
