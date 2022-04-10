@@ -46,7 +46,7 @@ Size (KB) | Linear Gas Term | Quadratic Gas Term | Total | Relative
 while when `mem_size = 512K`, the quadratic term is about 10x higher than the linear term.  With the quadratic, the maximum allocated memory for an EVM call stack with 30M gas limit is about 3849KB.
 
 The memory gas metering of using a quadratic term to prevent EVM from using large memory is unreasonable due to the following reasons:
-1. The cost of allocating memory for a decent size is linear.  As long as the memory can be stored in physical memory (i.e., no memory swapping), the cost is linear in terms of size.  Taking 50M gas as block limit as an example, without quadratic term, the maximum memory size is 30M / 3 * 32 = 305MB, which be easily fit into the memory in a commodity PC.
+1. The cost of allocating memory for a decent size is linear.  As long as the memory can be stored in physical memory (i.e., no memory swapping), the cost is linear in terms of size.  Taking 30M gas as block limit as an example, without quadratic term, the maximum memory size is 30M / 3 * 32 = 305MB, which be easily fit into the memory in a commodity PC.
 2. The cost of expanding memory generally relies on the cost of append() operation, whose amortized cost is O(1).  Even the worse case is O(N), we can show that the worst case attack will result in linear gas term.
 3. If an attacker wants to perform a memory allocation attack, the attacker can employ a strategy to circumvent the quadratic term by creating multiple call stacks.  The basic gas cost of calling a contract is 700, and EVM allows 1024 call depth.  This means that an attacker can use TX gas limit / 1024 - 700 (e.g., 30M / 1024 - 700 = 28596) to allocate the memory, which can allocate up to 1024 * 99KB ~ 99MB.
 
