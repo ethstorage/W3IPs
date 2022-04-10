@@ -55,7 +55,7 @@ Consider the following simplified memory model, where
 - the copy minimal size is 32 bytes with 3 gas per copy;
 - when expanding the memory to size, we will create a new memory with a capacity to the nearest 32 * 2 ** N >= size, where N is an integer, and then copy the original memory to the new memory.
 
-As a result, given a memory size, we could find N, so that the worst copy cost from memory size zero to current memory size will be 3 * 2 ** N, which is close to existing linear term.
+As a result, given a memory size, we could find N, so that the worst copy cost from memory size zero to current memory size will be 3 * (2 ** N - 1), which is close to existing linear term.
 
 ## Copyright
 
