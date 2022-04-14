@@ -59,6 +59,7 @@ Removes the file `name` in the directory and returns the number of chunks remove
 function remove(bytes memory name) external returns (uint256)
 ```
 
+
 #### refund
 
 Refund the token in the contract to the owner.
@@ -113,6 +114,14 @@ Removes a chunk of the file `name` and returns `false` if such chunk does not ex
 
 ```
 function removeChunk(bytes memory name, uint256 chunkId) external returns (bool);
+```
+
+#### truncate
+
+Removes the chunks of the file `name` in the directory from the given `chunkId` and returns the number of chunks removed by an account with write permission.  When `chunkId = 0`, the method is essentially the same as `remove()`.
+
+```
+function truncate(bytes memory name, uint256 chunkId) external returns (uint256);
 ```
 
 ## Implementation
