@@ -57,7 +57,7 @@ where `//` is the integer divide operator.
 
 For CREATE/CREATE2, if the newly created contract size > `MAX_CODE_SIZE_SOFT`, the opcode will require the following value of the token is in the contract after running the creation code (serve as staking)
 
-`(CODE_SIZE - 1) // CHUNK_SIZE * CODE_STATKING_PER_CHUNK`.
+`(CODE_SIZE - 1) // CHUNK_SIZE * CODE_STAKING_PER_CHUNK`.
 
 ## Rationale
 
