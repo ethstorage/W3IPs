@@ -59,6 +59,22 @@ Removes the file `name` in the directory and returns the number of chunks remove
 function remove(bytes memory name) external returns (uint256)
 ```
 
+#### refund
+
+Refund the token in the contract to the owner.
+
+```
+function refund() external
+```
+
+#### destruct()
+
+Destory the contract.
+
+```
+function destruct() external
+```
+
 #### countChunks
 
 Returns the number of chunks of the file `name`.
