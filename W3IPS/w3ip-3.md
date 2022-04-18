@@ -40,7 +40,15 @@ function write(bytes memory name, bytes memory data) external payable
 Returns the binary `data` from the file `name` in the directory and existence of the file.
 
 ```
-function read(bytes memory name) external view returns (bytes memory, bool)
+function read(bytes memory name) external view returns (bytes memory data, bool exist)
+```
+
+#### fallback read
+
+Returns the binary `data` from the file `cdata` (prefixed with `/`) in the directory.
+
+```
+fallback(bytes calldata cdata) external returns (bytes memory data) 
 ```
 
 #### size
@@ -48,7 +56,7 @@ function read(bytes memory name) external view returns (bytes memory, bool)
 Returns the size of the `data` from the file `name` in the directory and the number of chunks of the data.
 
 ```
-function size(bytes memory name) external view returns (uint256, uint256)
+function size(bytes memory name) external view returns (uint256 size, uint256 chunks)
 ```
 
 #### remove
@@ -56,7 +64,7 @@ function size(bytes memory name) external view returns (uint256, uint256)
 Removes the file `name` in the directory and returns the number of chunks removed (0 means the file does not exist) by an account with write permission.
 
 ```
-function remove(bytes memory name) external returns (uint256)
+function remove(bytes memory name) external returns (uint256 numOfChunksRemoved)
 ```
 
 
@@ -81,7 +89,7 @@ function destruct() external
 Returns the number of chunks of the file `name`.
 
 ```
-function countChunks(bytes memory name) external view returns (uint256);
+function countChunks(bytes memory name) external view returns (uint256 numOfChunks);
 ```
 
 #### writeChunk
@@ -89,7 +97,7 @@ function countChunks(bytes memory name) external view returns (uint256);
 Writes a chunk of data to the file by an account with write permission. The write will fail if `chunkId > numOfChunks`, i.e., the write must append the file or replace the existing chunk.
 
 ```
- function writeChunk(bytes memory name, uint256 chunkId, bytes memory data) external payable;
+ function writeChunk(bytes memory name, uint256 chunkId, bytes memory chunkData) external payable;
 ```
 
 #### readChunk
@@ -97,7 +105,7 @@ Writes a chunk of data to the file by an account with write permission. The writ
 Returns the chunk data of the file `name` and the existence of the chunk.
 
 ```
-function readChunk(bytes memory name, uint256 chunkId) external view returns (bytes memory, bool);
+function readChunk(bytes memory name, uint256 chunkId) external view returns (bytes memory chunkData, bool exist);
 ```
 
 #### chunkSize
@@ -105,7 +113,7 @@ function readChunk(bytes memory name, uint256 chunkId) external view returns (by
 Returns the size of a chunk of the file `name` and the existence of the chunk.
 
 ```
-function chunkSize(bytes memory name, uint256 chunkId) external view returns (uint256, bool);
+function chunkSize(bytes memory name, uint256 chunkId) external view returns (uint256 chunkSize, bool exist);
 ```
 
 #### removeChunk
@@ -113,7 +121,7 @@ function chunkSize(bytes memory name, uint256 chunkId) external view returns (ui
 Removes a chunk of the file `name` and returns `false` if such chunk does not exist. The method should be called by an account with write permission.
 
 ```
-function removeChunk(bytes memory name, uint256 chunkId) external returns (bool);
+function removeChunk(bytes memory name, uint256 chunkId) external returns (bool exist);
 ```
 
 #### truncate
@@ -121,10 +129,17 @@ function removeChunk(bytes memory name, uint256 chunkId) external returns (bool)
 Removes the chunks of the file `name` in the directory from the given `chunkId` and returns the number of chunks removed by an account with write permission.  When `chunkId = 0`, the method is essentially the same as `remove()`.
 
 ```
-function truncate(bytes memory name, uint256 chunkId) external returns (uint256);
+function truncate(bytes memory name, uint256 chunkId) external returns (uint256 numOfChunksRemoved);
 ```
 
-## Implementation
+
+## Rationle
+
+With EIP-4804, we are able to locate a Web3 resource on blockchain using HTTP-style URIs.  One application of Web3 resources are web contents that are referenced within a directory using relative paths such as HTML/SVG.  This standard proposes a contract-based directory to simplify the synchronization between local web contents and on-chain web contents.  Further, with relative paths referenced in the web contents and EIP-4804, the users will have a consistent view of the web contents locally and on-chain.
+
+One issue of uploading the web contents to the blockchain is that the web contents may be too large to fit into a single transaction.  As a result, the standard provides a chunk-based operations so that uploading a content can be splitted into several transactions.  Meanwhile, the read operation can be done in a single transaction, i.e., with a single Web3 URL defined in EIP-4804.
+
+## Reference Implementation
 
 An example of the implementation can be found [here](https://github.com/web3q/evm-large-storage/blob/main/contracts/examples/FlatDirectory.sol)
 
