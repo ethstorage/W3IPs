@@ -30,8 +30,8 @@ Therefore, Web3Q cross-chain call is combined with Web3Q's block generation cons
 ## Specification
 
 1. Perform cross-chain calls within a contract
-We implemented a precompiled contract at address 0x00000000000000000000000000000000033303 to perform cross-chain calls.
-At present, we provide a getLogByTxHash method in this precompiled contract to call the log data of ethereum.
+We implemented a precompiled contract at address `0x00000000000000000000000000000000033303` to perform cross-chain calls.
+At present, we provide a `getLogByTxHash` method in this precompiled contract to call the log data of ethereum.
 ```
 getLogByTxHash(uint256 chainId , bytes32 txHash, uint256 logIdx ,uint256 maxDataLen, uint256 confirms)
 ```
@@ -42,7 +42,7 @@ getLogByTxHash(uint256 chainId , bytes32 txHash, uint256 logIdx ,uint256 maxData
 - confirms: The number of block confirmations required for this transaction
 
 2. You can view the result of the cross-chain call via eth.getTransaction and eth.getTransactionReceipt.
-Web3Q added an `externalCallResult` property to the results of eth.getTransaction and eth.getTransactionReceipt.
+Web3Q added an `externalCallResult` property to the results of `eth_getTransaction` and `eth_getTransactionReceipt`.
 
 ### Parameters
 
