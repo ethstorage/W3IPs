@@ -15,9 +15,11 @@ requires: EIP-4444
 
 Prune history block body, so that node disk requirement doesn't increase infinitely.
 
-## Abstract
 
 ## Motivation
+
+`EthStorage` passes key/value through calldata, so block body may grow infinitely, we solve it by pruning history block body.
+
 
 ## Specification
 
