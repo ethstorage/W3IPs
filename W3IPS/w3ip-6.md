@@ -35,7 +35,7 @@ Prune historical block bodies to reduce the node disk requirement.
 
 This is a simplified implementation of EIP-4444, in that we only prune block bodies that contain potentially large calldata in EthStorage case, but we keep headers and receipts (the restriction for the max size of receipts may be imposed in the future). By doing this, the node disk requirement can be kept reasonably small (about 1TB) while the node is still convenient for dapps to query receipts. 
 
-The headers are kept in the version so that light clients are supported easily.  For the disk requirement of the headers, suppose the block time is 5s with each block size 1KB, the disk requirement per year will be 365 * 24 * 3600 * / 1KB ~ 6GB.
+The headers are kept in the version so that light clients are supported easily.  For the disk requirement of the headers, suppose the block time is 5s with each block header size 1KB, the disk requirement per year will be 365 * 24 * 3600 * / 5 * 1KB ~ 6GB.
 
 ## Implementation
 
