@@ -1,5 +1,5 @@
 ---
-w3ip: 6
+w3ip: 7
 title: Prune historical block bodies
 author: Qi Zhou https://github.com/qizhou
 discussions-to: 
